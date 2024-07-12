@@ -1,50 +1,50 @@
 setupPagination();
 
 function setupPagination() {
-    const pokedexRef = document.querySelector('#pokedexSection');
-    const searchRef = document.querySelector('#searchSection');
-    const generateRef = document.querySelector('#generateSection');
-    pokedexRef.classList.add('d-none');
-    searchRef.classList.add('d-none');
-    generateRef.classList.add('d-none');
-    const navRefs = document.querySelectorAll('.header_nav-item');
-    navRefs.forEach(navRef => {
-        navRef.addEventListener('click', (e) => {
-            if(e.target.textContent === 'Pokedex') {
-                pokedexRef.classList.remove('d-none');
-                searchRef.classList.add('d-none');
-                generateRef.classList.add('d-none');
+    const pokedexRef = document.querySelector("#pokedexSection");
+    const searchRef = document.querySelector("#searchSection");
+    const generateRef = document.querySelector("#generateSection");
+    pokedexRef.classList.add("d-none");
+    searchRef.classList.add("d-none");
+    generateRef.classList.add("d-none");
+    const navRefs = document.querySelectorAll(".header_nav-item");
+    navRefs.forEach((navRef) => {
+        navRef.addEventListener("click", (e) => {
+            if (e.target.textContent === "Pokedex") {
+                pokedexRef.classList.remove("d-none");
+                searchRef.classList.add("d-none");
+                generateRef.classList.add("d-none");
 
                 setupPokemonGrid();
-            } else if(e.target.textContent === 'Search') {
-                pokedexRef.classList.add('d-none');
-                searchRef.classList.remove('d-none');
-                generateRef.classList.add('d-none');
-            } else if(e.target.textContent === 'Generate') {
-                pokedexRef.classList.add('d-none');
-                searchRef.classList.add('d-none');
-                generateRef.classList.remove('d-none');
+            } else if (e.target.textContent === "Search") {
+                pokedexRef.classList.add("d-none");
+                searchRef.classList.remove("d-none");
+                generateRef.classList.add("d-none");
+
+                createSearchForm();
+                createSearchResultContainer();
+            } else if (e.target.textContent === "Generate") {
+                pokedexRef.classList.add("d-none");
+                searchRef.classList.add("d-none");
+                generateRef.classList.remove("d-none");
             }
         });
     });
 }
 
 function setupPokemonGrid() {
-    console.log('setupPokemoGrid');
-    const pokedexGridRef = document.querySelector('#pokedexGrid');
+    console.log("setupPokemonGrid");
+    const pokedexGridRef = document.querySelector("#pokedexGrid");
 
-    pokemons.forEach(pokemon => {
+    pokemons.forEach((pokemon) => {
         let cardRef = createPokemonCard(pokemon);
         pokedexGridRef.appendChild(cardRef);
     });
-
 }
 
-console.log(pokemons[0]);
-
 function createPokemonCard(pokemon) {
-    const cardRef = document.createElement('article');
-    cardRef.classList.add('card');
+    const cardRef = document.createElement("article");
+    cardRef.classList.add("card");
 
     // const indexRef = document.createElement('span');
     // indexRef.classList.add('card_index');
@@ -120,7 +120,7 @@ function createPokemonCard(pokemon) {
     // divRef.appendChild(statRef);
 
     let typeString;
-    if(pokemon.type.length > 1) {
+    if (pokemon.type.length > 1) {
         typeString = `${pokemon.type[0].name} / ${pokemon.type[1].name}`;
     } else {
         typeString = pokemon.type[0].name;
@@ -128,7 +128,7 @@ function createPokemonCard(pokemon) {
 
     const cardTemplate = `
             <span class="card_index">#${pokemon.id}</span>
-            <figure class="card_background">
+            <figure class="card_background" style="background-color:${pokemon.type[0].color};">
                 <img src="${pokemon.image}" alt="Image of the pokemon called ${pokemon.name}" class="card_image">
             </figure>
             <div class="card_text">
@@ -151,7 +151,7 @@ function createPokemonCard(pokemon) {
     return cardRef;
 }
 
-{/* <article class="card">
+/* <article class="card">
     <span class="card_index">#1</span>
     <figure class="card_background">
         <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png" alt="" class="card_image">
@@ -169,9 +169,70 @@ function createPokemonCard(pokemon) {
         <p class="card_stat">HP: 50</p>
         <p class="card_stat">Total: 300</p>
     </div>
-</article> */}
+</article> */
 
+function createSearchForm() {
+    const searchRef = document.querySelector("#pokedex-search");
+    const formRef = document.createElement("form");
+    formRef.classList.add("main_search-form");
 
+    const inputRef = document.createElement("input");
+    inputRef.type = "text";
+    inputRef.placeholder = "Pokemon name...";
+    inputRef.id = "input-pokemon";
+    formRef.appendChild(inputRef);
 
+    const buttonRef = document.createElement("button");
+    buttonRef.type = "submit";
+    buttonRef.textContent = "Search";
+    buttonRef.id = "search-submit";
+    formRef.appendChild(buttonRef);
 
+    searchRef.appendChild(formRef);
+    getSearchInput();
+}
 
+function createSearchResultContainer() {
+    const searchRef = document.querySelector("#pokedex-search");
+    const sectionRef = document.createElement("section");
+    sectionRef.classList.add("main_pokedex-grid", "search-results");
+
+    searchRef.appendChild(sectionRef);
+}
+
+function getSearchInput() {
+    const searchFormRef = document.querySelector(".main_search-form");
+    searchFormRef.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const inputRef = document.querySelector("#input-pokemon").value.trim();
+        searchPokemon(inputRef);
+    });
+}
+
+function searchPokemon(pokemonSearch) {
+    const mainPokedexGridRef = document.querySelector(".search-results");
+    clearResults(mainPokedexGridRef);
+
+    let isFound = false;
+    pokemons.forEach((pokemon) => {
+        if (pokemonSearch.localeCompare(pokemon.name, "en", { sensitivity: "base" }) === 0) {
+            const cardRef = createPokemonCard(pokemon);
+            mainPokedexGridRef.appendChild(cardRef);
+            isFound = true;
+        }
+    });
+
+    if (!isFound) {
+        const notFoundMessageRef = document.createElement("p");
+        notFoundMessageRef.textContent = `"${pokemonSearch}" not found`;
+        notFoundMessageRef.style.gridColumn = "1 / -1";
+        notFoundMessageRef.style.justifySelf = "center";
+        mainPokedexGridRef.appendChild(notFoundMessageRef);
+    }
+}
+
+function clearResults(elem) {
+    while (elem.lastChild) {
+        elem.removeChild(elem.lastChild);
+    }
+}
