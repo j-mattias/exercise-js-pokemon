@@ -1,0 +1,141 @@
+:root {
+    --pokemon-yellow: #FFCC05;
+    --pokemon-blue: #1B53BA;
+    --pokemon-red: #E3350D;
+    --pokemon-red-dark: #B83416;
+    --pokemon-bg: #F5F5F5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page-wrapper {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.d-none {
+    display: none;
+}
+
+body {
+    background-color: var(--pokemon-bg);
+}
+
+header, main {
+    width: 100%;
+}
+
+header{
+    margin-top: 1rem;
+    background-color: var(--pokemon-red);
+    color: var(--pokemon-yellow);
+
+    .header_wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header_title {
+        background-color: var(--pokemon-blue);
+        padding: .5rem;
+        margin: .5rem;
+        border-radius: 10px;
+    }
+
+    .header_navigation {
+        align-self: flex-end;
+    
+        .header_nav-list {
+            display: flex;
+
+            .header_nav-item {
+                list-style: none;
+                padding: .5rem 1rem;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: var(--pokemon-red-dark);
+                }
+            }
+        }
+    }
+}
+
+.main {
+
+    .main_title {
+        text-align: center;
+        padding-top: 1rem;
+    }
+
+    .main_pokedex-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        padding: 1rem 0;
+        gap: 1rem;
+        
+        /* .card {
+            background-color: white;
+            border-radius: 2rem;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: .5rem;
+            padding: 1rem;
+            position: relative;
+
+            .card_index {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background-color: var(--pokemon-blue);
+                color: var(--pokemon-yellow);
+                width: 3rem;
+                border-radius: 50%;
+                aspect-ratio: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .card_background {
+                width: 50%;
+                background-color: green;
+                padding: 1rem;
+                border-radius: 50%;
+
+                .card_image {
+                    width: 100%;
+                }
+            }
+
+            .card_name {
+                text-align: center;
+            }
+
+            .card_stats {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+
+                .card_stat {
+                    padding: 0.5rem;
+                    text-align: center;
+                    border-bottom: 2px solid black;
+                    width: 100%;
+                    font-size: 0.9rem;
+
+                    &:last-child {
+                        grid-column: span 2;
+                    }
+                }
+            }
+        } */
+    }
+}
