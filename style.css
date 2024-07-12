@@ -79,7 +79,7 @@ header{
         padding: 1rem 0;
         gap: 1rem;
         
-        /* .card {
+        .card {
             background-color: white;
             border-radius: 2rem;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -136,6 +136,6 @@ header{
                     }
                 }
             }
-        } */
+        }
     }
 }
