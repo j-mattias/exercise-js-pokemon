@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>My Pokemon DB</title>
-</head>
-<body>
-    <header class="header">
-        <div class="page-wrapper header_wrapper">
-            <h1 class="header_title">My Pokemon DB</h1>
-            <nav class="header_navigation">
-                <ul class="header_nav-list">
-                    <li class="header_nav-item">Pokedex</li>
-                    <li class="header_nav-item">Search</li>
-                    <li class="header_nav-item">Generate</li>
-                </ul>
-            </nav>   
-        </div>
-    </header>
-    <main class="main">
-        <div class="page-wrapper">
-            <section id="pokedexSection">
-                <h1 class="main_title">Pokédex</h1>
-                <section class="main_pokedex-grid" id="pokedexGrid">
-                    
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <title>My Pokemon DB</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="page-wrapper header_wrapper">
+                <h1 class="header_title">My Pokemon DB</h1>
+                <nav class="header_navigation">
+                    <ul class="header_nav-list">
+                        <li class="header_nav-item">Pokedex</li>
+                        <li class="header_nav-item">Search</li>
+                        <li class="header_nav-item">Generate</li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="main">
+            <div class="page-wrapper">
+                <section id="pokedexSection">
+                    <h1 class="main_title">Pokédex</h1>
+                    <section class="main_pokedex-grid" id="pokedexGrid"></section>
                 </section>
-            </section>
-            <section id="searchSection">
-                <h1 class="main_title">Search Pokémon</h1>
-                <section id="pokedex-search">
-
+                <section id="searchSection">
+                    <h1 class="main_title">Search Pokémon</h1>
+                    <section id="pokedex-search"></section>
                 </section>
-            </section>
-            <section id="generateSection">
-                <h1 class="main_title">Generate Pokémon</h1>
-                <section id="pokedex-generate">
+                <section id="generateSection">
+                    <h1 class="main_title">Generate Pokémon</h1>
+                    <section id="pokedex-generate"></section>
                 </section>
-            </section>
-        </div>
-    </main>
-    <script src="./pokemons.js"></script>
-    <script src="./script.js"></script>
-</body>
+            </div>
+        </main>
+        <script src="./pokemons.js"></script>
+        <script src="./script.js"></script>
+    </body>
 </html>

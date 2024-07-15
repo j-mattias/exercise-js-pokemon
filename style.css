@@ -139,7 +139,8 @@ header{
         }
     }
 
-    .main_search-form {
+    .main_search-form,
+    .main_generate-form  {
         display: flex;
         justify-content: center;
         gap: 1rem;
@@ -154,6 +155,20 @@ header{
         button {
             padding: 0.5rem 1rem;
             cursor: pointer;
+        }
+    }
+
+    #pokedex-generate {
+        display: flex;
+        flex-direction: column;
+
+        .main_generate-form {
+            flex-direction: column;
+            /* align-items: center; */
+
+            label {
+                align-self: flex-start;
+            }
         }
     }
 }
